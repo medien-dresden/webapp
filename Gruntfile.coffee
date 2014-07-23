@@ -8,8 +8,8 @@ module.exports = (grunt) ->
   #
   # register custom tasks
   #
-  grunt.registerTask 'scripts:debug', ['coffee:default', 'uglify:debug']
-  grunt.registerTask 'scripts:release', ['coffee:default', 'uglify:release']
+  grunt.registerTask 'scripts:debug', ['coffee:default', 'ngAnnotate', 'uglify:debug']
+  grunt.registerTask 'scripts:release', ['coffee:default', 'ngAnnotate', 'uglify:release']
   grunt.registerTask 'styles:debug', ['compass:debug', 'recess:debug']
   grunt.registerTask 'styles:release', ['compass:release', 'recess:release']
 
@@ -84,17 +84,30 @@ module.exports = (grunt) ->
     #
     uglify:
       release:
+        options:
+          preserveComments: 'some'
         files:
-          'dist/app.js': ['.build/app/**/*.js']
+          'dist/app.js': ['.build/app/**/*.annotated.js']
           'dist/vendor.js': ['.build/vendor/**/*.js']
       debug:
         options:
+          mangle: false
           beautify: true
           sourceMap: true
           sourceMapName: 'dist/app.map'
         files:
-          'dist/app.js': ['.build/app/**/*.js']
+          'dist/app.js': ['.build/app/**/*.annotated.js']
           'dist/vendor.js': ['.build/vendor/**/*.js']
+    #
+    # angular js injection preparation
+    #
+    ngAnnotate:
+      options:
+        singleQuotes: true
+      files:
+        expand: true,
+        src: ['.build/app/**/*.js'],
+        ext: '.annotated.js'
 
     #
     # clean workspace

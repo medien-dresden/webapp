@@ -24,6 +24,7 @@
     "grunt-contrib-clean": "*",
     "grunt-recess": "*",
     "grunt-bowercopy": "*",
+    "grunt-ng-annotate": "*",
 
     "http-server": "*",
     "matchdep": "*",
