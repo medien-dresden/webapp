@@ -84,8 +84,7 @@ module.exports = (grunt) ->
     #
     uglify:
       release:
-        options:
-          preserveComments: 'some'
+        options: preserveComments: 'some'
         files:
           'dist/app.js': ['.build/app/**/*.annotated.js']
           'dist/vendor.js': ['.build/vendor/**/*.js']
@@ -102,8 +101,7 @@ module.exports = (grunt) ->
     # angular js injection preparation
     #
     ngAnnotate:
-      options:
-        singleQuotes: true
+      options: singleQuotes: true
       files:
         expand: true,
         src: ['.build/app/**/*.js'],
@@ -119,20 +117,22 @@ module.exports = (grunt) ->
     #
     watch:
       options: livereload: true
+
       scripts:
         files: 'src/app/**/*.coffee'
         tasks: ['scripts:debug']
 
       styles:
-        options: livereload: true
         files: 'src/style/**/*.{scss,sass}'
         tasks: ['styles:debug']
 
       jade:
-        options: livereload: true
         files: 'src/**/*.jade',
         tasks: ['jade:debug']
 
+    #
+    # copy dependencies into build
+    #
     bowercopy:
       options: destPrefix: '.build/vendor'
       default:
