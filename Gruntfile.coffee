@@ -3,14 +3,7 @@ module.exports = (grunt) ->
   #
   # load NPM tasks
   #
-  grunt.loadNpmTasks 'grunt-contrib-coffee'
-  grunt.loadNpmTasks 'grunt-contrib-watch'
-  grunt.loadNpmTasks 'grunt-contrib-jade'
-  grunt.loadNpmTasks 'grunt-contrib-compass'
-  grunt.loadNpmTasks 'grunt-contrib-uglify'
-  grunt.loadNpmTasks 'grunt-contrib-clean'
-
-  grunt.loadNpmTasks 'grunt-recess'
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   #
   # register custom tasks
@@ -51,6 +44,7 @@ module.exports = (grunt) ->
       debug:
         options:
           pretty: true
+          data: () -> isDebug: true
         files:
           'dist/index.html': ['src/app.jade']
 
@@ -114,14 +108,20 @@ module.exports = (grunt) ->
     # watch different aspects
     #
     watch:
+      options:
+        livereload: true
       scripts:
         files: 'src/app/**/*.coffee'
         tasks: ['scripts:debug']
 
       styles:
+        options:
+          livereload: true
         files: 'src/style/**/*.{scss,sass}'
         tasks: ['styles:debug']
 
       jade:
+        options:
+          livereload: true
         files: 'src/**/*.jade',
         tasks: ['jade:debug']

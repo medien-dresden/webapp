@@ -25,7 +25,8 @@
     "grunt-contrib-clean": "*",
 
     "grunt-recess": "*",
-    "http-server": "*"
+    "http-server": "*",
+    "matchdep": "*"
   },
 
   "scripts": {
