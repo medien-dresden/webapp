@@ -1,0 +1,1 @@
+console.log 'app launch test'

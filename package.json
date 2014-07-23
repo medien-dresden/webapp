@@ -1,0 +1,34 @@
+{
+  "name": "mutrec",
+  "version": "1.0.0",
+  "description": "Multitrack Recording App",
+  "author": "Peter Heisig <peter.heisig@medien-dresden.de>",
+  "license": "GPLv3",
+  "private": true,
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/medien-dresden/mutrec"
+  },
+
+  "bugs": {
+    "url": "https://github.com/medien-dresden/mutrec/issues"
+  },
+
+  "dependencies": {},
+  "devDependencies": {
+    "grunt-contrib-coffee": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-jade": "*",
+    "grunt-contrib-compass": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-clean": "*",
+
+    "grunt-recess": "*",
+    "http-server": "*"
+  },
+
+  "scripts": {
+    "start": "http-server dist/"
+  }
+}
