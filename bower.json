@@ -1,6 +1,7 @@
 {
   "name": "mutrec",
   "dependencies": {
-    "angular": "~1.2.20"
+    "angular": "~1.2.20",
+    "bootstrap": "~3.2.0"
   }
 }

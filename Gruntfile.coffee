@@ -10,13 +10,15 @@ module.exports = (grunt) ->
   #
   grunt.registerTask 'scripts:debug', ['coffee:default', 'ngAnnotate', 'uglify:debug']
   grunt.registerTask 'scripts:release', ['coffee:default', 'ngAnnotate', 'uglify:release']
-  grunt.registerTask 'styles:debug', ['compass:debug', 'recess:debug']
-  grunt.registerTask 'styles:release', ['compass:release', 'recess:release']
+  grunt.registerTask 'styles:debug', ['compass:debug']
+  grunt.registerTask 'styles:release', ['compass:release']
+  grunt.registerTask 'html:debug', ['jade:debug']
+  grunt.registerTask 'html:release', ['jade:release']
 
-  grunt.registerTask 'release', ['clean', 'bowercopy', 'scripts:release', 'styles:release', 'jade:release']
-  grunt.registerTask 'debug', ['clean', 'bowercopy', 'scripts:debug', 'styles:debug', 'jade:debug']
+  grunt.registerTask 'release', ['clean', 'bowercopy', 'scripts:release', 'styles:release', 'html:release']
+  grunt.registerTask 'debug', ['clean', 'bowercopy', 'scripts:debug', 'styles:debug', 'html:debug']
 
-  grunt.registerTask 'default', ['debug']
+  grunt.registerTask 'default', ['release']
 
   #
   # grunt configuration
@@ -50,34 +52,18 @@ module.exports = (grunt) ->
     # SCSS to CSS
     #
     compass:
+      options:
+        require: ['bootstrap-sass']
+        sassDir: 'src/style'
+        cssDir: 'dist/static'
+        httpFontsDir: 'static/fonts'
       release:
         options:
-          sassDir: 'src/style'
-          cssDir: '.build/style'
           environment: 'production'
       debug:
         options:
-          sassDir: 'src/style'
-          cssDir: '.build/style'
           environment: 'development'
           outputStyle: 'expanded'
-
-    #
-    # combine CSS files
-    #
-    recess:
-      release:
-        options: compress: true
-        files: 'dist/style.css': [ '.build/**/*.css' ]
-      debug:
-        options:
-          compile: true
-          noOverqualifying: false
-          noUniversalSelectors: false
-          strictPropertyOrder: false
-          noIDs: false
-          zeroUnits: false
-        files: 'dist/style.css': [ '.build/**/*.css' ]
 
     #
     # combine javascript files
@@ -86,8 +72,8 @@ module.exports = (grunt) ->
       release:
         options: preserveComments: 'some'
         files:
-          'dist/app.js': ['.build/app/**/*.annotated.js']
-          'dist/vendor.js': ['.build/vendor/**/*.js']
+          'dist/static/app.js': ['.build/app/**/*.annotated.js']
+          'dist/static/vendor.js': ['.build/vendor/**/*.js']
       debug:
         options:
           mangle: false
@@ -95,8 +81,8 @@ module.exports = (grunt) ->
           sourceMap: true
           sourceMapName: 'dist/app.map'
         files:
-          'dist/app.js': ['.build/app/**/*.annotated.js']
-          'dist/vendor.js': ['.build/vendor/**/*.js']
+          'dist/static/app.js': ['.build/app/**/*.annotated.js']
+          'dist/static/vendor.js': ['.build/vendor/**/*.js']
     #
     # angular js injection preparation
     #
@@ -126,14 +112,22 @@ module.exports = (grunt) ->
         files: 'src/style/**/*.{scss,sass}'
         tasks: ['styles:debug']
 
-      jade:
+      html:
         files: 'src/**/*.jade',
-        tasks: ['jade:debug']
+        tasks: ['html:debug']
 
     #
     # copy dependencies into build
     #
     bowercopy:
-      options: destPrefix: '.build/vendor'
-      default:
-        files: 'angular.js': 'angular/angular.js'
+      scripts:
+        options: destPrefix: '.build/vendor'
+        files: # ordering through number prefix
+          '01_jquery.js': 'jquery/dist/jquery.js'
+          '02_bootstrap.js': 'bootstrap/dist/js/bootstrap.js'
+          '03_angular.js': 'angular/angular.js'
+
+      assets:
+        options: destPrefix: 'dist/static'
+        files:
+          'fonts': 'bootstrap/dist/fonts/*'
