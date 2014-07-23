@@ -53,10 +53,8 @@ module.exports = (grunt) ->
     #
     compass:
       options:
-        require: ['bootstrap-sass']
         sassDir: 'src/style'
         cssDir: 'dist/static'
-        httpFontsDir: 'static/fonts'
       release:
         options:
           environment: 'production'
@@ -117,17 +115,17 @@ module.exports = (grunt) ->
         tasks: ['html:debug']
 
     #
-    # copy dependencies into build
+    # copy dependencies
     #
     bowercopy:
       scripts:
         options: destPrefix: '.build/vendor'
         files: # ordering through number prefix
           '01_jquery.js': 'jquery/dist/jquery.js'
-          '02_bootstrap.js': 'bootstrap/dist/js/bootstrap.js'
+          '02_bootstrap.js': 'bootstrap-sass-official/assets/javascripts/bootstrap.js'
           '03_angular.js': 'angular/angular.js'
 
       assets:
         options: destPrefix: 'dist/static'
         files:
-          'fonts': 'bootstrap/dist/fonts/*'
+          'fonts': 'bootstrap-sass-official/assets/fonts/bootstrap/*'
