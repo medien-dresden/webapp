@@ -15,7 +15,6 @@
     "url": "https://github.com/medien-dresden/mutrec/issues"
   },
 
-  "dependencies": {},
   "devDependencies": {
     "grunt-contrib-coffee": "*",
     "grunt-contrib-watch": "*",
@@ -23,10 +22,13 @@
     "grunt-contrib-compass": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-clean": "*",
-
     "grunt-recess": "*",
+    "grunt-bowercopy": "*",
+
     "http-server": "*",
-    "matchdep": "*"
+    "matchdep": "*",
+    "grunt": "*",
+    "bower": "*"
   },
 
   "scripts": {

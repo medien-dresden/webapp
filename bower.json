@@ -1,0 +1,6 @@
+{
+  "name": "mutrec",
+  "dependencies": {
+    "angular": "~1.2.20"
+  }
+}
