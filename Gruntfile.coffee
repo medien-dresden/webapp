@@ -27,23 +27,6 @@ module.exports = (grunt) ->
   grunt.initConfig
 
     #
-    # package definition
-    #
-    pkg: grunt.file.readJSON 'package.json'
-
-    #
-    # source banner
-    #
-    banner:
-      """
-      /*!
-       * <%= pkg.name %> - v<%= pkg.version %>
-       * Copyright <%= pkg.author %> <%= grunt.template.today("yyyy") %>
-       * License <%= pkg.license %>
-       */
-      """
-
-    #
     # coffee files to javascript
     #
     coffee:
@@ -90,7 +73,6 @@ module.exports = (grunt) ->
       release:
         options:
           preserveComments: 'some'
-          banner: '<%= banner %>\n'
         files:
           'dist/static/app.js': ['.build/src/**/*.js']
           'dist/static/vendor.js': ['.build/vendor/**/*.js']
