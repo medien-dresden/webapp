@@ -52,10 +52,7 @@ module.exports = (grunt) ->
         cwd: './'
         dest: '.build'
         ext: '.js'
-        src: [
-          'src/**/*.coffee',
-          'test/app/**/*.coffee'
-        ]
+        src: ['src/**/*.coffee']
 
     #
     # jade templates to HTML
@@ -173,6 +170,6 @@ module.exports = (grunt) ->
     #
     karma:
       debug:
-        configFile: 'test/karma.coffee'
+        configFile: 'test/karma.conf.coffee'
       release:
-        configFile: 'test/karma.coffee'
+        configFile: 'test/karma.conf.coffee'

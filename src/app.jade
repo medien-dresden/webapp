@@ -13,7 +13,7 @@ html(ng-app='app')
 
   body.container(ng-controller='AppCtrl')
     h1 Multitrack Recording App
-    p.lead(ng-bind='yeah')
+    p.lead(ng-bind='greeting')
 
-    button.btn.btn-primary
-      span.glyphicon.glyphicon-search
+    button.btn.btn-primary(ng-click='doorBell()')
+      span.glyphicon.glyphicon-bell

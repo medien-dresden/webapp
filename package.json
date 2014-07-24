@@ -36,6 +36,7 @@
     "karma-jasmine": "*",
     "karma-phantomjs-launcher": "*",
     "karma-junit-reporter": "*",
+    "karma-coffee-preprocessor": "*",
     "karma-coverage": "*"
   },
 

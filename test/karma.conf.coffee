@@ -7,8 +7,8 @@ module.exports = (config) ->
     files: [
       '.build/vendor/**/*.js'
       'node_modules/angular-mocks/angular-mocks.js'
-      '.build/src/**/*.js'
-      '.build/test/**/*.js'
+      'src/**/*.coffee'
+      'test/**/*.spec.coffee'
     ]
 
     reporters: [
@@ -21,7 +21,8 @@ module.exports = (config) ->
     browsers: ['PhantomJS']
 
     preprocessors:
-      '.build/src/**/*.js': 'coverage'
+      'src/**/*.coffee': 'coverage'
+      'test/**/*.coffee': 'coffee'
 
     junitReporter:
       outputFile: 'reports/unit.xml'
