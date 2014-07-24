@@ -10,13 +10,13 @@ module.exports = (grunt) ->
   #
   grunt.registerTask 'scripts:debug', ['coffee:default', 'ngAnnotate', 'uglify:debug']
   grunt.registerTask 'scripts:debugApp', ['coffee:default', 'ngAnnotate', 'uglify:debugApp']
-  grunt.registerTask 'scripts:release', ['coffee:default', 'ngAnnotate', 'uglify:release', 'karma:release']
+  grunt.registerTask 'scripts:release', ['coffee:default', 'ngAnnotate', 'uglify:release', 'karma']
   grunt.registerTask 'styles:debug', ['compass:debug']
   grunt.registerTask 'styles:release', ['compass:release']
   grunt.registerTask 'html:debug', ['jade:debug']
   grunt.registerTask 'html:release', ['jade:release']
 
-  grunt.registerTask 'release', ['clean', 'bowercopy', 'scripts:release', 'styles:release', 'html:release']
+  grunt.registerTask 'release', ['clean', 'bowercopy', 'scripts:release', 'styles:release', 'html:release'] #protractor
   grunt.registerTask 'debug', ['clean', 'bowercopy', 'scripts:debug', 'styles:debug', 'html:debug']
 
   grunt.registerTask 'default', ['release']
@@ -32,7 +32,6 @@ module.exports = (grunt) ->
     coffee:
       default:
         expand: true
-        cwd: './'
         dest: '.build'
         ext: '.js'
         src: ['src/**/*.coffee']
@@ -107,7 +106,7 @@ module.exports = (grunt) ->
     #
     # clean workspace
     #
-    clean: ['.build', 'dist']
+    clean: ['.build', 'dist', 'reports']
 
     #
     # watch different aspects
@@ -118,10 +117,10 @@ module.exports = (grunt) ->
       scripts:
         files: [
           'src/app/**/*.coffee'
-          'test/app/**/*.coffee'
+          'test/unit/**/*.coffee'
         ]
 
-        tasks: ['scripts:debugApp', 'karma:debug']
+        tasks: ['scripts:debugApp', 'karma']
 
       styles:
         files: 'src/style/**/*.{scss,sass}'
@@ -151,7 +150,12 @@ module.exports = (grunt) ->
     # karma unit testing
     #
     karma:
-      debug:
+      default:
         configFile: 'test/karma.conf.coffee'
-      release:
-        configFile: 'test/karma.conf.coffee'
+
+    #
+    # protractor end-to-end testing
+    #
+    protractor:
+      default:
+        configFile: 'test/protractor.conf.coffee'

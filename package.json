@@ -22,10 +22,12 @@
     "grunt-contrib-compass": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-clean": "*",
+    "grunt-protractor-runner": "*",
     "grunt-bowercopy": "*",
     "grunt-ng-annotate": "*",
     "grunt-karma": "*",
 
+    "protractor": "*",
     "angular-mocks": "*",
     "http-server": "*",
     "matchdep": "*",
@@ -41,6 +43,8 @@
   },
 
   "scripts": {
-    "start": "http-server dist"
+    "postinstall": "bower install && webdriver-manager update",
+    "start": "http-server dist & webdriver-manager start",
+    "prestart": "grunt debug"
   }
 }
