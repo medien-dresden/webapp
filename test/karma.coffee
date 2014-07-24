@@ -11,8 +11,22 @@ module.exports = (config) ->
       '.build/test/**/*.js'
     ]
 
+    reporters: [
+      'dots'
+      'junit'
+      'coverage'
+    ]
+
     frameworks: ['jasmine']
     browsers: ['PhantomJS']
-    reporters: ['progress']
 
-  return this
+    preprocessors:
+      '.build/src/**/*.js': 'coverage'
+
+    junitReporter:
+      outputFile: 'reports/unit.xml'
+      suite: 'unit'
+
+    coverageReporter:
+      type: 'lcov'
+      dir: 'reports/coverage'

@@ -2,7 +2,7 @@
   "name": "mutrec",
   "version": "1.0.0",
   "description": "Multitrack Recording App",
-  "author": "Peter Heisig <peter.heisig@medien-dresden.de>",
+  "author": "Peter Heisig",
   "license": "GPLv3",
   "private": true,
 
@@ -34,7 +34,9 @@
 
     "karma": "*",
     "karma-jasmine": "*",
-    "karma-phantomjs-launcher": "*"
+    "karma-phantomjs-launcher": "*",
+    "karma-junit-reporter": "*",
+    "karma-coverage": "*"
   },
 
   "scripts": {

@@ -27,6 +27,23 @@ module.exports = (grunt) ->
   grunt.initConfig
 
     #
+    # package definition
+    #
+    pkg: grunt.file.readJSON 'package.json'
+
+    #
+    # source banner
+    #
+    banner:
+      """
+      /*!
+       * <%= pkg.name %> - v<%= pkg.version %>
+       * Copyright <%= pkg.author %> <%= grunt.template.today("yyyy") %>
+       * License <%= pkg.license %>
+       */
+      """
+
+    #
     # coffee files to javascript
     #
     coffee:
@@ -45,11 +62,12 @@ module.exports = (grunt) ->
     #
     jade:
       release:
+        options:
+          data: -> isRelease: true
         files: 'dist/index.html': ['src/app.jade']
       debug:
         options:
           pretty: true
-          data: -> isDebug: true
         files: 'dist/index.html': ['src/app.jade']
 
     #
@@ -73,7 +91,9 @@ module.exports = (grunt) ->
     #
     uglify:
       release:
-        options: preserveComments: 'some'
+        options:
+          preserveComments: 'some'
+          banner: '<%= banner %>\n'
         files:
           'dist/static/app.js': ['.build/src/**/*.js']
           'dist/static/vendor.js': ['.build/vendor/**/*.js']
