@@ -10,7 +10,7 @@ module.exports = (grunt) ->
   #
   grunt.registerTask 'scripts:debug', ['coffee:default', 'ngAnnotate', 'uglify:debug']
   grunt.registerTask 'scripts:debugApp', ['coffee:default', 'ngAnnotate', 'uglify:debugApp']
-  grunt.registerTask 'scripts:release', ['coffee:default', 'ngAnnotate', 'uglify:release']
+  grunt.registerTask 'scripts:release', ['coffee:default', 'ngAnnotate', 'uglify:release', 'karma:release']
   grunt.registerTask 'styles:debug', ['compass:debug']
   grunt.registerTask 'styles:release', ['compass:release']
   grunt.registerTask 'html:debug', ['jade:debug']
@@ -32,10 +32,13 @@ module.exports = (grunt) ->
     coffee:
       default:
         expand: true
-        cwd: 'src'
-        src: ['**/*.coffee']
+        cwd: './'
         dest: '.build'
         ext: '.js'
+        src: [
+          'src/**/*.coffee',
+          'test/app/**/*.coffee'
+        ]
 
     #
     # jade templates to HTML
@@ -56,6 +59,7 @@ module.exports = (grunt) ->
       options:
         sassDir: 'src/style'
         cssDir: 'dist/static'
+        cacheDir: '.build/sass'
       release:
         options:
           environment: 'production'
@@ -71,7 +75,7 @@ module.exports = (grunt) ->
       release:
         options: preserveComments: 'some'
         files:
-          'dist/static/app.js': ['.build/app/**/*.annotated.js']
+          'dist/static/app.js': ['.build/src/**/*.js']
           'dist/static/vendor.js': ['.build/vendor/**/*.js']
       debug:
         options:
@@ -80,7 +84,7 @@ module.exports = (grunt) ->
           sourceMap: true
           sourceMapName: 'dist/app.map'
         files:
-          'dist/static/app.js': ['.build/app/**/*.annotated.js']
+          'dist/static/app.js': ['.build/src/**/*.js']
           'dist/static/vendor.js': ['.build/vendor/**/*.js']
       debugApp:
         options:
@@ -89,7 +93,7 @@ module.exports = (grunt) ->
           sourceMap: true
           sourceMapName: 'dist/app.map'
         files:
-          'dist/static/app.js': ['.build/app/**/*.annotated.js']
+          'dist/static/app.js': ['.build/src/**/*.js']
 
     #
     # angular js injection preparation
@@ -98,13 +102,13 @@ module.exports = (grunt) ->
       options: singleQuotes: true
       files:
         expand: true,
-        src: ['.build/app/**/*.js'],
-        ext: '.annotated.js'
+        src: ['.build/src/**/*.js'],
+        rename: (dest, src) -> src
 
     #
     # clean workspace
     #
-    clean: ['.sass-cache', '.build', 'dist']
+    clean: ['.build', 'dist']
 
     #
     # watch different aspects
@@ -113,8 +117,12 @@ module.exports = (grunt) ->
       options: livereload: true
 
       scripts:
-        files: 'src/app/**/*.coffee'
-        tasks: ['scripts:debugApp']
+        files: [
+          'src/app/**/*.coffee'
+          'test/app/**/*.coffee'
+        ]
+
+        tasks: ['scripts:debugApp', 'karma:debug']
 
       styles:
         files: 'src/style/**/*.{scss,sass}'
@@ -132,10 +140,19 @@ module.exports = (grunt) ->
         options: destPrefix: '.build/vendor'
         files: # ordering through number prefix
           '01_jquery.js': 'jquery/dist/jquery.js'
-          '02_bootstrap.js': 'bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js'
+          '02_bootstrap.js': 'bootstrap/dist/js/bootstrap.js'
           '03_angular.js': 'angular/angular.js'
 
       assets:
         options: destPrefix: 'dist/static'
         files:
-          'fonts': 'bootstrap-sass-official/vendor/assets/fonts/bootstrap/*'
+          'fonts': 'bootstrap/dist/fonts/*'
+
+    #
+    # karma unit testing
+    #
+    karma:
+      debug:
+        configFile: 'test/karma.coffee'
+      release:
+        configFile: 'test/karma.coffee'

@@ -24,11 +24,17 @@
     "grunt-contrib-clean": "*",
     "grunt-bowercopy": "*",
     "grunt-ng-annotate": "*",
+    "grunt-karma": "*",
 
+    "angular-mocks": "*",
     "http-server": "*",
     "matchdep": "*",
     "grunt": "*",
-    "bower": "*"
+    "bower": "*",
+
+    "karma": "*",
+    "karma-jasmine": "*",
+    "karma-phantomjs-launcher": "*"
   },
 
   "scripts": {
