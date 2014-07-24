@@ -3,7 +3,7 @@ html(ng-app='app')
   head
     title mutrec
 
-    link(rel='stylesheet', href='static/style.css')
+    link(rel='stylesheet', href='static/app.css')
 
     script(src='static/vendor.js')
     script(src='static/app.js')
@@ -11,9 +11,9 @@ html(ng-app='app')
     if isDebug
       script(src='http://localhost:35729/livereload.js')
 
-  body.bp(ng-controller='AppCtrl')
+  body(ng-controller='AppCtrl')
     h1 Multitrack Recording App
-    h2(ng-bind='yeah')
+    p.lead(ng-bind='yeah')
 
     button.btn.btn-primary
       span.glyphicon.glyphicon-search

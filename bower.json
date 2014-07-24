@@ -2,6 +2,7 @@
   "name": "mutrec",
   "dependencies": {
     "angular": "~1.2.20",
-    "bootstrap-sass-official": "~3.2.0"
+    "bootstrap-sass-official": "~3.2.0",
+    "bootswatch-scss": "~3.1.1"
   }
 }

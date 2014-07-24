@@ -9,6 +9,7 @@ module.exports = (grunt) ->
   # register custom tasks
   #
   grunt.registerTask 'scripts:debug', ['coffee:default', 'ngAnnotate', 'uglify:debug']
+  grunt.registerTask 'scripts:debugApp', ['coffee:default', 'ngAnnotate', 'uglify:debugApp']
   grunt.registerTask 'scripts:release', ['coffee:default', 'ngAnnotate', 'uglify:release']
   grunt.registerTask 'styles:debug', ['compass:debug']
   grunt.registerTask 'styles:release', ['compass:release']
@@ -45,7 +46,7 @@ module.exports = (grunt) ->
       debug:
         options:
           pretty: true
-          data: () -> isDebug: true
+          data: -> isDebug: true
         files: 'dist/index.html': ['src/app.jade']
 
     #
@@ -81,6 +82,15 @@ module.exports = (grunt) ->
         files:
           'dist/static/app.js': ['.build/app/**/*.annotated.js']
           'dist/static/vendor.js': ['.build/vendor/**/*.js']
+      debugApp:
+        options:
+          mangle: false
+          beautify: true
+          sourceMap: true
+          sourceMapName: 'dist/app.map'
+        files:
+          'dist/static/app.js': ['.build/app/**/*.annotated.js']
+
     #
     # angular js injection preparation
     #
@@ -104,7 +114,7 @@ module.exports = (grunt) ->
 
       scripts:
         files: 'src/app/**/*.coffee'
-        tasks: ['scripts:debug']
+        tasks: ['scripts:debugApp']
 
       styles:
         files: 'src/style/**/*.{scss,sass}'
@@ -122,10 +132,10 @@ module.exports = (grunt) ->
         options: destPrefix: '.build/vendor'
         files: # ordering through number prefix
           '01_jquery.js': 'jquery/dist/jquery.js'
-          '02_bootstrap.js': 'bootstrap-sass-official/assets/javascripts/bootstrap.js'
+          '02_bootstrap.js': 'bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js'
           '03_angular.js': 'angular/angular.js'
 
       assets:
         options: destPrefix: 'dist/static'
         files:
-          'fonts': 'bootstrap-sass-official/assets/fonts/bootstrap/*'
+          'fonts': 'bootstrap-sass-official/vendor/assets/fonts/bootstrap/*'
