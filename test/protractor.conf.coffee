@@ -1,18 +1,16 @@
-exports.config = (config) ->
-  config.set
-    frameworks: 'jasmine'
+exports.config =
+  allScriptsTimeout: 1100
 
-    allScriptsTimeout: 1100
+  baseUrl: 'http://localhost:8080/'
 
-    seleniumAddress: 'http://localhost:4444/wd/hub'
-    baseUrl: 'http://localhost:8080/'
+  framework: 'jasmine'
 
-    framework: 'jasmine',
+  specs: [
+    'e2e/**/*.spec.coffee'
+  ]
 
-    specs: ['test/e2e/**/*.spec.coffee']
+  capabilities:
+    'browserName': 'firefox'
 
-    capabilities:
-      'browserName': 'firefox'
-
-    jasmineNodeOpts:
-      defaultTimeoutInterval: 30000
+  jasmineNodeOpts:
+    defaultTimeoutInterval: 30000

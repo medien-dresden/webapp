@@ -27,6 +27,7 @@
     "grunt-ng-annotate": "*",
     "grunt-karma": "*",
 
+    "coffee-script": "*",
     "protractor": "*",
     "angular-mocks": "*",
     "http-server": "*",

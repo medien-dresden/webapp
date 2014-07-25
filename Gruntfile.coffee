@@ -16,7 +16,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'html:debug', ['jade:debug']
   grunt.registerTask 'html:release', ['jade:release']
 
-  grunt.registerTask 'release', ['clean', 'bowercopy', 'scripts:release', 'styles:release', 'html:release'] #protractor
+  grunt.registerTask 'release', ['clean', 'bowercopy', 'scripts:release', 'styles:release', 'html:release', 'protractor']
   grunt.registerTask 'debug', ['clean', 'bowercopy', 'scripts:debug', 'styles:debug', 'html:debug']
 
   grunt.registerTask 'default', ['release']
