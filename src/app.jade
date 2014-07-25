@@ -15,5 +15,5 @@ html(ng-app='app')
     h1 webapp
     p.lead(ng-bind='greeting')
 
-    button.btn.btn-primary(ng-click='doorBell()')
+    button#doorBell.btn.btn-primary(ng-click='ringDoorBell()')
       span.glyphicon.glyphicon-bell
