@@ -27,6 +27,7 @@
     "grunt-ng-annotate": "*",
     "grunt-karma": "*",
 
+    "jasmine-reporters": "*",
     "astrolabe": "*",
     "coffee-script": "*",
     "protractor": "*",
