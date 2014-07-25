@@ -19,6 +19,6 @@ exports.config =
     require 'jasmine-reporters'
     browser.getCapabilities().then (caps) ->
       makeDir = require 'mkdirp'
-      makeDir "reports/e2e/#{caps.caps_.browserName}-v#{caps.caps_.version}/"
+      makeDir "reports/e2e/#{caps.caps_.browserName} #{caps.caps_.version}/"
       jasmine.getEnv().addReporter new jasmine.JUnitXmlReporter(
-        "reports/e2e/#{caps.caps_.browserName}-v#{caps.caps_.version}/", true, true, 'junit', true)
+        "reports/e2e/#{caps.caps_.browserName} #{caps.caps_.version}/", true, true, 'junit', true)

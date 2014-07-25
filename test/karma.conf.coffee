@@ -26,8 +26,8 @@ module.exports = (config) ->
 
     junitReporter:
       outputFile: 'reports/unit/junit.xml'
-      suite: 'unit'
+      suite: ''
 
     coverageReporter:
-      type: 'lcov'
+      type: 'lcovonly'
       dir: 'reports/coverage'
