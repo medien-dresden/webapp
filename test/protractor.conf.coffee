@@ -16,8 +16,8 @@ exports.config =
     defaultTimeoutInterval: 30000
 
   onPrepare: ->
-    JUnitXmlReporter = require('jasmine-reporters').JUnitXmlReporter
-    browser.getCapabilities()
-      .then (caps) ->
-        jasmine.getEnv().addReporter(
-          new JUnitXmlReporter '../reports', true, true, "#{caps.caps_.browserName}-v#{caps.caps_.version}")
+    reporter = require('jasmine-reporters')
+    browser.getCapabilities().then (caps) ->
+      jasmine.getEnv().addReporter new reporter.JUnitXmlReporter
+        filePrefix: "#{caps.caps_.browserName}-v#{caps.caps_.version}"
+        savePath: '../reports/e2e'

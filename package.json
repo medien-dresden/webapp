@@ -47,7 +47,6 @@
 
   "scripts": {
     "postinstall": "bower install && webdriver-manager update",
-    "start": "http-server dist & webdriver-manager start",
-    "prestart": "grunt debug"
+    "start": "http-server dist & webdriver-manager start"
   }
 }

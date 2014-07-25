@@ -25,7 +25,7 @@ module.exports = (config) ->
       'test/unit/**/*.coffee': 'coffee'
 
     junitReporter:
-      outputFile: 'reports/unit.xml'
+      outputFile: 'reports/unit/junit.xml'
       suite: 'unit'
 
     coverageReporter:
