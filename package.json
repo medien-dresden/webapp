@@ -27,7 +27,7 @@
     "grunt-ng-annotate": "*",
     "grunt-karma": "*",
 
-    "jasmine-reporters": "*",
+    "jasmine-reporters": "~1.0.0",
     "astrolabe": "*",
     "coffee-script": "*",
     "protractor": "*",
@@ -36,6 +36,7 @@
     "matchdep": "*",
     "grunt": "*",
     "bower": "*",
+    "mkdirp": "*",
 
     "karma": "*",
     "karma-jasmine": "*",
