@@ -11,9 +11,7 @@ html(ng-app='app')
     unless isRelease
       script(src='http://localhost:35729/livereload.js')
 
-  body.container(ng-controller='AppCtrl')
+  body(ng-controller='AppCtrl')
     h1 webapp
-    p.lead(ng-bind='greeting')
-
-    button#doorBell.btn.btn-primary(ng-click='ringDoorBell()')
-      span.glyphicon.glyphicon-bell
+    p(ng-bind='greeting')
+    button(ng-click='ringDoorBell()'): span.icon-bell

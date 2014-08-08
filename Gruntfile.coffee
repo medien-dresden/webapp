@@ -140,6 +140,7 @@ module.exports = (grunt) ->
           '01_jquery.js': 'jquery/dist/jquery.js'
           '02_bootstrap.js': 'bootstrap/dist/js/bootstrap.js'
           '03_angular.js': 'angular/angular.js'
+          '04_lodash': 'lodash/dist/lodash.js'
 
       assets:
         options: destPrefix: 'dist/static'
