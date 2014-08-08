@@ -8,7 +8,7 @@ module.exports = (config) ->
       '.build/vendor/**/*.js'
       'node_modules/angular-mocks/angular-mocks.js'
       'src/**/*.coffee'
-      'test/**/*.spec.coffee'
+      'test/unit/**/*.spec.coffee'
     ]
 
     reporters: [
@@ -22,12 +22,12 @@ module.exports = (config) ->
 
     preprocessors:
       'src/**/*.coffee': 'coverage'
-      'test/**/*.coffee': 'coffee'
+      'test/unit/**/*.coffee': 'coffee'
 
     junitReporter:
-      outputFile: 'reports/unit.xml'
-      suite: 'unit'
+      outputFile: 'reports/unit/junit.xml'
+      suite: ''
 
     coverageReporter:
-      type: 'lcov'
+      type: 'lcovonly'
       dir: 'reports/coverage'

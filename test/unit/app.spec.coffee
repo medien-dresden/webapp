@@ -13,5 +13,5 @@ describe 'app', ->
         expect(@scope.greeting).toBe 'Hi there!'
 
       it 'is very angry if you ring the bell', =>
-        @scope.doorBell()
+        @scope.ringDoorBell()
         expect(@scope.greeting).toBe 'Beat it!'

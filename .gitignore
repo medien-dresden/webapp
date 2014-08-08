@@ -6,3 +6,5 @@ reports/
 .idea/
 .build/
 .sass-cache/
+
+*.log

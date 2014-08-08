@@ -5,42 +5,44 @@
   "author": "Peter Heisig",
   "license": "GPLv3",
   "private": true,
-
   "repository": {
     "type": "git",
     "url": "https://github.com/medien-dresden/webapp"
   },
-
   "bugs": {
     "url": "https://github.com/medien-dresden/webapp/issues"
   },
-
   "devDependencies": {
-    "grunt-contrib-coffee": "*",
-    "grunt-contrib-watch": "*",
-    "grunt-contrib-jade": "*",
-    "grunt-contrib-compass": "*",
-    "grunt-contrib-uglify": "*",
-    "grunt-contrib-clean": "*",
-    "grunt-bowercopy": "*",
-    "grunt-ng-annotate": "*",
-    "grunt-karma": "*",
-
     "angular-mocks": "*",
-    "http-server": "*",
-    "matchdep": "*",
-    "grunt": "*",
+    "astrolabe": "*",
     "bower": "*",
-
+    "coffee-script": "*",
+    "grunt": "*",
+    "grunt-bowercopy": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-coffee": "*",
+    "grunt-contrib-compass": "*",
+    "grunt-contrib-jade": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-karma": "*",
+    "grunt-karma-coveralls": "^2.5.1",
+    "grunt-ng-annotate": "*",
+    "grunt-protractor-runner": "*",
+    "http-server": "*",
+    "jasmine-reporters": "~1.0.0",
     "karma": "*",
-    "karma-jasmine": "*",
-    "karma-phantomjs-launcher": "*",
-    "karma-junit-reporter": "*",
     "karma-coffee-preprocessor": "*",
-    "karma-coverage": "*"
+    "karma-coverage": "*",
+    "karma-jasmine": "*",
+    "karma-junit-reporter": "*",
+    "karma-phantomjs-launcher": "*",
+    "matchdep": "*",
+    "mkdirp": "*",
+    "protractor": "*"
   },
-
   "scripts": {
-    "start": "http-server dist"
+    "postinstall": "bower install && webdriver-manager update",
+    "start": "http-server dist & webdriver-manager start"
   }
 }
