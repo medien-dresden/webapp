@@ -2,6 +2,10 @@
 
 Template app made with modern web technologies.
 
+[![Build Status](https://travis-ci.org/medien-dresden/webapp.svg?branch=develop)](https://travis-ci.org/medien-dresden/webapp)
+[![Coverage Status](https://coveralls.io/repos/medien-dresden/webapp/badge.png?branch=develop)](https://coveralls.io/r/medien-dresden/webapp?branch=develop)
+[![Stories in Ready](https://badge.waffle.io/medien-dresden/webapp.png?label=ready&title=stories%20ready)](http://waffle.io/medien-dresden/webapp)
+
 ## License
 
     This is free software: you can redistribute it and/or modify

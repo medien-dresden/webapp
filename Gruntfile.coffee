@@ -160,3 +160,11 @@ module.exports = (grunt) ->
     protractor:
       default:
         configFile: 'test/protractor.conf.coffee'
+
+    #
+    # coverage report for coveralls.io
+    #
+    coveralls:
+      options:
+        coverage_dir: 'reports/coverage'
+        force: true
